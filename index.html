@@ -12,8 +12,12 @@ header{background:#2E7D32;color:#fff;padding:28px 30px;border-radius:18px}
 header .eyebrow,header p{color:#fff}
 /* 가격 열은 천 단위 쉼표와 오른쪽 정렬을 유지합니다. */
 td.numeric,th.numeric,th.numeric button{text-align:right}
+/* 기준 문구는 오늘 날짜를 계산하지 않고 요청한 고정 문구로 표시합니다. */
+.title-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.reference-date{font-size:14px;font-weight:500;color:#fff;white-space:nowrap}
+@media(max-width:560px){.title-row{gap:4px 12px}.reference-date{margin-bottom:8px}}
 </style></head><body><main>
-<header><div class="eyebrow">BOOK DATA / COLLECTION OVERVIEW</div><h1>도서 데이터 대시보드</h1><p>50권의 도서를 가격과 출판사로 살펴보세요. 검색과 열 정렬로 원하는 책을 빠르게 찾을 수 있습니다.</p></header>
+<header><div class="eyebrow">BOOK DATA / COLLECTION OVERVIEW</div><div class="title-row"><h1>도서 데이터 대시보드</h1><span class="reference-date">2026년 10일 기준</span></div><p>50권의 도서를 가격과 출판사로 살펴보세요. 검색과 열 정렬로 원하는 책을 빠르게 찾을 수 있습니다.</p></header>
 <!-- 요약 지표는 원본 전체 데이터를 기준으로 계산합니다. -->
 <section class="kpis" aria-label="전체 도서 요약"><div class="card"><div class="kpi-label">전체 도서 수</div><div class="value"><span id="total">—</span><span class="unit">권</span></div><div class="small">CSV의 각 행을 도서 1건으로 집계</div></div><div class="card"><div class="kpi-label">평균 가격</div><div class="value"><span id="average">—</span><span class="unit">원</span></div><div class="small">전체 가격의 산술 평균 · 원 단위 반올림</div></div><div class="card"><div class="kpi-label">최고 가격</div><div class="value"><span id="max">—</span><span class="unit">원</span></div><div id="maxTitle" class="small"></div></div><div class="card"><div class="kpi-label">출판사 수</div><div class="value"><span id="publishers">—</span><span class="unit">개</span></div><div class="small">출판사 이름 기준 중복 제거</div></div></section>
 <section class="charts" aria-label="도서 통계 차트"><article class="card"><h2>가격대별 도서 수</h2><div class="small">전체 50권 · 가격 단위: 원 / 도서 수 단위: 권</div><div class="chartbox"><canvas id="priceChart" role="img" aria-label="가격대별 도서 수 막대 차트"></canvas></div><details><summary>가격대별 집계 보기</summary><div id="priceData" class="chart-data"></div></details></article><article class="card"><h2>출판사별 도서 수 <span class="small">TOP 8</span></h2><div class="small" id="topNote"></div><div class="donut-layout"><div class="chartbox"><canvas id="publisherChart" role="img" aria-label="상위 8개 출판사의 도서 수 도넛 차트"></canvas></div><ul id="publisherLegend" class="legend" aria-label="출판사별 도서 수"></ul></div><div class="small">동률이면 CSV에서 먼저 등장한 출판사를 우선합니다. 비율은 상위 8개 출판사 내 비중입니다.</div></article></section><div id="chartNotice" class="notice" role="status">차트 라이브러리를 불러오지 못했습니다. 인터넷 연결 후 새로고침해 주세요. 요약 카드, 집계 목록과 도서 표는 그대로 이용할 수 있습니다.</div>
